@@ -44,6 +44,13 @@ if theme.mathjax && theme.mathjax.enable === true
         displayMath: [["\\[", "\\]"]]
       }
     });
+// Google tag (gtag.js)
+script(async='' src='https://www.googletagmanager.com/gtag/js?id=G-Z4EXFD5PT4')
+script.
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Z4EXFD5PT4');
 
 if theme.scripts && theme.scripts.length > 0
   //- scripts list from config.yml
