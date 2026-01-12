@@ -128,6 +128,24 @@
         .toggle-checkbox:checked + .toggle-label {
             background-color: <%= page.theme_color || "#84cc16" %>;
         }
+
+        /* Archive Modal */
+        .archive-modal {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .archive-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .archive-modal-content {
+            transform: translateY(-20px) scale(0.95);
+            transition: transform 0.3s ease;
+        }
+        .archive-modal.active .archive-modal-content {
+            transform: translateY(0) scale(1);
+        }
     </style>
 </head>
 <body class="font-sans h-screen w-screen flex flex-col bg-light-bg text-light-text dark:bg-dark-bg dark:text-dark-text selection:bg-rhine-accent selection:text-white">
@@ -146,11 +164,27 @@
                 <a href="/" class="hover:opacity-80 transition-opacity">
                     <h1 class="text-lg md:text-xl font-bold tracking-tight leading-none"><%= config.title || "RHINE LAB" %></h1>
                 </a>
-                <div class="text-[9px] md:text-[10px] text-slate-500 dark:text-rhine-neon tracking-[0.2em] md:tracking-[0.3em] font-mono font-bold mt-0.5 md:mt-1"><%= page.section_name || "ECOLOGICAL SECTION" %></div>
+                <div class="text-[9px] md:text-[10px] text-slate-500 dark:text-rhine-neon tracking-[0.2em] md:tracking-[0.3em] font-mono font-bold mt-0.5 md:mt-1">
+                    <%= page.section_name || "ECOLOGICAL SECTION" %><% if (page.is_archive && page.archive_date) { %> <span class="text-rhine-accent">// ARCHIVE: <%= page.archive_date %></span><% } %>
+                </div>
             </div>
         </div>
 
         <div class="flex items-center gap-3 md:gap-6 font-mono text-xs">
+            <% if (page.is_archive) { %>
+            <!-- Back Button (Archive Page) -->
+            <a href="/sey-coffee" class="flex items-center gap-1 md:gap-2 px-2 md:px-3 py-1 bg-slate-100 dark:bg-slate-800 rounded border border-slate-200 dark:border-slate-600 hover:bg-rhine-accent hover:text-white hover:border-rhine-accent transition-all cursor-pointer">
+                <i data-lucide="arrow-left" class="w-3 h-3"></i>
+                <span class="hidden md:inline font-bold">BACK</span>
+            </a>
+            <% } else { %>
+            <!-- Archive Button (Main Page) -->
+            <button id="archive-btn" class="flex items-center gap-1 md:gap-2 px-2 md:px-3 py-1 bg-slate-100 dark:bg-slate-800 rounded border border-slate-200 dark:border-slate-600 hover:bg-rhine-accent hover:text-white hover:border-rhine-accent transition-all cursor-pointer">
+                <i data-lucide="archive" class="w-3 h-3"></i>
+                <span class="hidden md:inline font-bold">ARCHIVE</span>
+            </button>
+            <% } %>
+
             <!-- Mode Toggle -->
             <div class="flex items-center gap-2 md:gap-3">
                 <span class="hidden md:inline text-[10px] font-bold uppercase text-slate-400">System Mode</span>
@@ -276,6 +310,54 @@
         </section>
 
     </main>
+
+    <% if (!page.is_archive) { %>
+    <!-- Archive Modal -->
+    <div id="archive-modal" class="archive-modal fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" id="archive-overlay"></div>
+        <div class="archive-modal-content rhine-glass bg-light-panel dark:bg-dark-panel p-6 md:p-8 relative z-10 w-full max-w-sm rounded-sm">
+            <div class="tech-corner corner-tl"></div>
+            <div class="tech-corner corner-tr"></div>
+            <div class="tech-corner corner-bl"></div>
+            <div class="tech-corner corner-br"></div>
+
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-lg font-bold uppercase tracking-wider flex items-center gap-2">
+                    <i data-lucide="archive" class="w-5 h-5 text-rhine-accent"></i>
+                    Archive Index
+                </h3>
+                <button id="archive-close" class="text-slate-400 hover:text-rhine-accent transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <div class="border-t border-slate-200 dark:border-slate-700 pt-4">
+                <ul id="archive-list" class="space-y-2 max-h-64 overflow-y-auto">
+                    <% if (page.archives && page.archives.length > 0) { %>
+                        <% page.archives.forEach(function(archive) { %>
+                        <li>
+                            <a href="<%= archive.path %>" class="flex items-center justify-between p-3 bg-slate-100 dark:bg-slate-800/50 hover:bg-rhine-accent hover:text-white rounded transition-all group">
+                                <span class="font-mono font-bold tracking-wider"><%= archive.date %></span>
+                                <i data-lucide="chevron-right" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                            </a>
+                        </li>
+                        <% }); %>
+                    <% } else { %>
+                        <li class="text-center text-slate-400 py-4 font-mono text-sm">
+                            No archives available
+                        </li>
+                    <% } %>
+                </ul>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-slate-200 dark:border-slate-700">
+                <button id="archive-close-btn" class="w-full py-2 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 rounded font-mono font-bold text-sm uppercase tracking-wider transition-colors">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+    <% } %>
 
     <script>
         const coffeeData = <%- JSON.stringify(page.beans || []) %>;
@@ -518,6 +600,36 @@
             document.getElementById('clock').innerText = timeString;
         }, 1000);
 
+        // --- ARCHIVE MODAL ---
+        <% if (!page.is_archive) { %>
+        const archiveBtn = document.getElementById('archive-btn');
+        const archiveModal = document.getElementById('archive-modal');
+        const archiveOverlay = document.getElementById('archive-overlay');
+        const archiveClose = document.getElementById('archive-close');
+        const archiveCloseBtn = document.getElementById('archive-close-btn');
+
+        function openArchiveModal() {
+            archiveModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeArchiveModal() {
+            archiveModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        archiveBtn.addEventListener('click', openArchiveModal);
+        archiveOverlay.addEventListener('click', closeArchiveModal);
+        archiveClose.addEventListener('click', closeArchiveModal);
+        archiveCloseBtn.addEventListener('click', closeArchiveModal);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && archiveModal.classList.contains('active')) {
+                closeArchiveModal();
+            }
+        });
+        <% } %>
+
         window.addEventListener('DOMContentLoaded', () => {
             initThree();
             animate();
@@ -525,6 +637,7 @@
             if(coffeeData.length > 0) {
                 loadData(0);
             }
+            lucide.createIcons();
         });
 
     </script>
