@@ -1,93 +1,103 @@
 // RHINE LAB palette override
-// Keep the original Hexo/Arknights layout and only shift the colors toward
-// the reference image: dark structural shell + pale paper panels + green accents.
+// True dual-mode: dark mode uses dark panels + light text;
+// light mode uses cream panels + ink text. Both keep a muted sage accent.
+// Custom vars used by this file:
+//   --rl-overlay  : overlay tint laid on top of the body image
+//   --rl-key-bg   : kbd cap surface
+//   --rl-key-shadow : inset shadow under kbd cap
 
 :root[theme-mode=dark]
-  --theme-highlight #5d8d79
-  --theme-subcolor #8fb3a5
-  --theme-stress #cc625c
-  --theme-kbd-shadow #47695d
-  --theme-kbd-text #0f1614
-  --theme-cursor #d9e2dd
-  --theme-cursor-bg rgba(237, 241, 238, .72)
-  --theme-text-hover #eef1ee
-  --theme-text #26312e
-  --theme-text-light #121917
-  --theme-text-rev #eef1ee
-  --theme-background #101615
-  --theme-bg-trans0 rgba(237, 241, 238, .975)
-  --theme-bg-trans1 rgba(237, 241, 238, .93)
-  --theme-bg-trans2 rgba(222, 228, 224, .92)
-  --theme-bg-hover #1a2421
-  --theme-bg-light #f5f7f5
-  --theme-bg-soft rgba(17, 24, 22, .05)
-  --theme-bg-soft-hover rgba(93, 141, 121, .1)
-  --theme-ex-header rgba(17, 24, 22, .24)
-  --theme-btn-bg #dbe1dd
-  --theme-border #23312d
-  --theme-border-light #121917
-  --theme-border-soft rgba(17, 24, 22, .16)
-  --theme-unimportant #707973
-  --theme-unimportant-trans rgba(112, 121, 115, .36)
-  --theme-unimportant-2 #919892
-  --theme-td-border rgba(17, 24, 22, .28)
-  --theme-td-hover rgba(93, 141, 121, .1)
-  --theme-tag-bg #d6ddd9
-  --theme-tag-count-bg #c4cdc8
-  --theme-tag-border #cfd7d2
-  --theme-loadingbar #8fb3a5
-  --theme-loadingbar-fail #cc625c
-  --theme-hide #121917
-  --theme-bar-color-0 rgba(93, 141, 121, .55)
-  --theme-bar-color-1 rgba(93, 141, 121, .35)
-  --theme-bar-color-2 rgba(17, 24, 22, .22)
-  --theme-bar-color-3 rgba(17, 24, 22, .08)
+  --theme-highlight #7daf94
+  --theme-subcolor #a3cfb6
+  --theme-stress #d57a73
+  --theme-kbd-shadow rgba(0, 0, 0, .4)
+  --theme-kbd-text #eef2ed
+  --theme-cursor #cdd6d0
+  --theme-cursor-bg rgba(255, 255, 255, .14)
+  --theme-text-hover #0f1612
+  --theme-text #cdd5d0
+  --theme-text-light #eef2ed
+  --theme-text-rev #0f1612
+  --theme-background #0d1311
+  --theme-bg-trans0 rgba(26, 36, 33, .985)
+  --theme-bg-trans1 rgba(26, 36, 33, .94)
+  --theme-bg-trans2 rgba(35, 47, 43, .92)
+  --theme-bg-hover #243430
+  --theme-bg-light #1f2a26
+  --theme-bg-soft rgba(255, 255, 255, .04)
+  --theme-bg-soft-hover rgba(125, 175, 148, .14)
+  --theme-ex-header rgba(255, 255, 255, .22)
+  --theme-btn-bg #2a3733
+  --theme-border #3a4641
+  --theme-border-light #cdd5d0
+  --theme-border-soft rgba(255, 255, 255, .12)
+  --theme-unimportant #9aa39d
+  --theme-unimportant-trans rgba(154, 163, 157, .35)
+  --theme-unimportant-2 #6b7570
+  --theme-td-border rgba(255, 255, 255, .14)
+  --theme-td-hover rgba(125, 175, 148, .12)
+  --theme-tag-bg #2a3733
+  --theme-tag-count-bg #344440
+  --theme-tag-border #3a4641
+  --theme-loadingbar #a3cfb6
+  --theme-loadingbar-fail #d57a73
+  --theme-hide #eef2ed
+  --theme-bar-color-0 rgba(125, 175, 148, .55)
+  --theme-bar-color-1 rgba(125, 175, 148, .35)
+  --theme-bar-color-2 rgba(255, 255, 255, .12)
+  --theme-bar-color-3 rgba(255, 255, 255, .04)
+  --rl-overlay rgba(13, 19, 17, .72)
+  --rl-key-bg #243430
+  --rl-key-shadow rgba(0, 0, 0, .35)
 
 :root[theme-mode=light]
-  --theme-highlight #537f6e
-  --theme-subcolor #6e9788
+  --theme-highlight #3a7560
+  --theme-subcolor #5b9881
   --theme-stress #b94d47
-  --theme-kbd-shadow #4d7062
-  --theme-kbd-text #0f1614
-  --theme-cursor #23312d
-  --theme-cursor-bg rgba(16, 22, 21, .12)
-  --theme-text-hover #f3f6f4
-  --theme-text #2b3431
-  --theme-text-light #141b19
-  --theme-text-rev #f3f6f4
-  --theme-background #e9eeeb
-  --theme-bg-trans0 rgba(244, 247, 245, .985)
-  --theme-bg-trans1 rgba(244, 247, 245, .95)
-  --theme-bg-trans2 rgba(231, 236, 233, .94)
-  --theme-bg-hover #18211f
+  --theme-kbd-shadow rgba(17, 24, 22, .2)
+  --theme-kbd-text #141a18
+  --theme-cursor #1f2a26
+  --theme-cursor-bg rgba(17, 24, 22, .12)
+  --theme-text-hover #f8f7f0
+  --theme-text #2a322f
+  --theme-text-light #141a18
+  --theme-text-rev #f8f7f0
+  --theme-background #eaeae3
+  --theme-bg-trans0 rgba(248, 247, 240, .985)
+  --theme-bg-trans1 rgba(248, 247, 240, .95)
+  --theme-bg-trans2 rgba(232, 230, 220, .94)
+  --theme-bg-hover #1a201d
   --theme-bg-light #f8fbf9
-  --theme-bg-soft rgba(17, 24, 22, .04)
-  --theme-bg-soft-hover rgba(83, 127, 110, .08)
+  --theme-bg-soft rgba(17, 24, 22, .045)
+  --theme-bg-soft-hover rgba(58, 117, 96, .12)
   --theme-ex-header rgba(17, 24, 22, .18)
-  --theme-btn-bg #dee6e1
-  --theme-border #24322e
-  --theme-border-light #141b19
-  --theme-border-soft rgba(17, 24, 22, .14)
-  --theme-unimportant #757d77
-  --theme-unimportant-trans rgba(117, 125, 119, .3)
-  --theme-unimportant-2 #979e98
+  --theme-btn-bg #e1e1d8
+  --theme-border #1f2a26
+  --theme-border-light #141a18
+  --theme-border-soft rgba(17, 24, 22, .15)
+  --theme-unimportant #5e6663
+  --theme-unimportant-trans rgba(94, 102, 99, .32)
+  --theme-unimportant-2 #898f8a
   --theme-td-border rgba(17, 24, 22, .22)
-  --theme-td-hover rgba(83, 127, 110, .08)
-  --theme-tag-bg #dde5e0
-  --theme-tag-count-bg #ced8d2
-  --theme-tag-border #d5dfd9
-  --theme-loadingbar #6e9788
+  --theme-td-hover rgba(58, 117, 96, .1)
+  --theme-tag-bg #dcdcd2
+  --theme-tag-count-bg #cccdc1
+  --theme-tag-border #d2d2c8
+  --theme-loadingbar #5b9881
   --theme-loadingbar-fail #b94d47
-  --theme-hide #141b19
-  --theme-bar-color-0 rgba(83, 127, 110, .55)
-  --theme-bar-color-1 rgba(83, 127, 110, .35)
-  --theme-bar-color-2 rgba(17, 24, 22, .2)
+  --theme-hide #141a18
+  --theme-bar-color-0 rgba(58, 117, 96, .55)
+  --theme-bar-color-1 rgba(58, 117, 96, .35)
+  --theme-bar-color-2 rgba(17, 24, 22, .18)
   --theme-bar-color-3 rgba(17, 24, 22, .06)
+  --rl-overlay rgba(234, 234, 227, .55)
+  --rl-key-bg #f5f4ee
+  --rl-key-shadow rgba(17, 24, 22, .12)
 
 body
   color var(--theme-text)
   background-color var(--theme-background)
-  background-image linear-gradient(rgba(16, 22, 21, .62), rgba(16, 22, 21, .62)), linear-gradient(rgba(17, 24, 22, .025) 1px, transparent 1px), linear-gradient(90deg, rgba(17, 24, 22, .025) 1px, transparent 1px), var(--body-background)
+  background-image linear-gradient(var(--rl-overlay), var(--rl-overlay)), linear-gradient(var(--theme-border-soft) 1px, transparent 1px), linear-gradient(90deg, var(--theme-border-soft) 1px, transparent 1px), var(--body-background)
   background-size auto auto, 32px 32px, 32px 32px, cover
   background-repeat no-repeat, repeat, repeat, no-repeat
   background-position 0 0, 0 0, 0 0, 50% 0
@@ -152,20 +162,20 @@ blockquote
   border-left-width 4px
   background-color rgba(93, 141, 121, .07)
 
-// Inline code: nudge contrast so it reads as a chip on the cream panel
+// Inline code: subtle sage chip; works on both cream and dark panels
 :not(pre) > code
-  background-color rgba(93, 141, 121, .14) !important
-  border 1px solid rgba(17, 24, 22, .08)
+  background-color var(--theme-bg-soft-hover) !important
+  border 1px solid var(--theme-border-soft)
   border-radius 2px
   padding 0 4px !important
 
-// kbd: a quiet paper-key look (cream surface, ink border, soft drop)
+// kbd: paper-key in light mode, dark cap in dark mode (driven by --rl-key-*)
 kbd
-  background-color #f5f4ee
+  background-color var(--rl-key-bg)
   color var(--theme-text-light)
   border 1px solid var(--theme-border-soft)
   border-radius 3px
-  box-shadow 0 1px 0 var(--theme-border-soft), inset 0 -1px 0 rgba(17, 24, 22, .06)
+  box-shadow 0 1px 0 var(--theme-border-soft), inset 0 -1px 0 var(--rl-key-shadow)
   padding 0 6px
 
 // Table heading on the structural ink color so it reads as a hard panel header
