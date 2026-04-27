@@ -1,0 +1,238 @@
+// RHINE LAB palette override
+// Keep the original Hexo/Arknights layout and only shift the colors toward
+// the reference image: dark structural shell + pale paper panels + green accents.
+
+:root[theme-mode=dark]
+  --theme-highlight #5d8d79
+  --theme-subcolor #8fb3a5
+  --theme-stress #cc625c
+  --theme-kbd-shadow #47695d
+  --theme-kbd-text #0f1614
+  --theme-cursor #d9e2dd
+  --theme-cursor-bg rgba(237, 241, 238, .72)
+  --theme-text-hover #eef1ee
+  --theme-text #26312e
+  --theme-text-light #121917
+  --theme-text-rev #eef1ee
+  --theme-background #101615
+  --theme-bg-trans0 rgba(237, 241, 238, .975)
+  --theme-bg-trans1 rgba(237, 241, 238, .93)
+  --theme-bg-trans2 rgba(222, 228, 224, .92)
+  --theme-bg-hover #1a2421
+  --theme-bg-light #f5f7f5
+  --theme-bg-soft rgba(17, 24, 22, .05)
+  --theme-bg-soft-hover rgba(93, 141, 121, .1)
+  --theme-ex-header rgba(17, 24, 22, .24)
+  --theme-btn-bg #dbe1dd
+  --theme-border #23312d
+  --theme-border-light #121917
+  --theme-border-soft rgba(17, 24, 22, .16)
+  --theme-unimportant #707973
+  --theme-unimportant-trans rgba(112, 121, 115, .36)
+  --theme-unimportant-2 #919892
+  --theme-td-border rgba(17, 24, 22, .28)
+  --theme-td-hover rgba(93, 141, 121, .1)
+  --theme-tag-bg #d6ddd9
+  --theme-tag-count-bg #c4cdc8
+  --theme-tag-border #cfd7d2
+  --theme-loadingbar #8fb3a5
+  --theme-loadingbar-fail #cc625c
+  --theme-hide #121917
+  --theme-bar-color-0 rgba(93, 141, 121, .55)
+  --theme-bar-color-1 rgba(93, 141, 121, .35)
+  --theme-bar-color-2 rgba(17, 24, 22, .22)
+  --theme-bar-color-3 rgba(17, 24, 22, .08)
+
+:root[theme-mode=light]
+  --theme-highlight #537f6e
+  --theme-subcolor #6e9788
+  --theme-stress #b94d47
+  --theme-kbd-shadow #4d7062
+  --theme-kbd-text #0f1614
+  --theme-cursor #23312d
+  --theme-cursor-bg rgba(16, 22, 21, .12)
+  --theme-text-hover #f3f6f4
+  --theme-text #2b3431
+  --theme-text-light #141b19
+  --theme-text-rev #f3f6f4
+  --theme-background #e9eeeb
+  --theme-bg-trans0 rgba(244, 247, 245, .985)
+  --theme-bg-trans1 rgba(244, 247, 245, .95)
+  --theme-bg-trans2 rgba(231, 236, 233, .94)
+  --theme-bg-hover #18211f
+  --theme-bg-light #f8fbf9
+  --theme-bg-soft rgba(17, 24, 22, .04)
+  --theme-bg-soft-hover rgba(83, 127, 110, .08)
+  --theme-ex-header rgba(17, 24, 22, .18)
+  --theme-btn-bg #dee6e1
+  --theme-border #24322e
+  --theme-border-light #141b19
+  --theme-border-soft rgba(17, 24, 22, .14)
+  --theme-unimportant #757d77
+  --theme-unimportant-trans rgba(117, 125, 119, .3)
+  --theme-unimportant-2 #979e98
+  --theme-td-border rgba(17, 24, 22, .22)
+  --theme-td-hover rgba(83, 127, 110, .08)
+  --theme-tag-bg #dde5e0
+  --theme-tag-count-bg #ced8d2
+  --theme-tag-border #d5dfd9
+  --theme-loadingbar #6e9788
+  --theme-loadingbar-fail #b94d47
+  --theme-hide #141b19
+  --theme-bar-color-0 rgba(83, 127, 110, .55)
+  --theme-bar-color-1 rgba(83, 127, 110, .35)
+  --theme-bar-color-2 rgba(17, 24, 22, .2)
+  --theme-bar-color-3 rgba(17, 24, 22, .06)
+
+body
+  color var(--theme-text)
+  background-color var(--theme-background)
+  background-image linear-gradient(rgba(16, 22, 21, .62), rgba(16, 22, 21, .62)), linear-gradient(rgba(17, 24, 22, .025) 1px, transparent 1px), linear-gradient(90deg, rgba(17, 24, 22, .025) 1px, transparent 1px), var(--body-background)
+  background-size auto auto, 32px 32px, 32px 32px, cover
+  background-repeat no-repeat, repeat, repeat, no-repeat
+  background-position 0 0, 0 0, 0 0, 50% 0
+
+article,
+#navigation,
+#total,
+#post-bg,
+.recent-post,
+#archive-aside,
+#Categories,
+#Archives
+  box-shadow 0 8px 22px rgba(0, 0, 0, .06)
+
+.recent-post,
+#post-bg,
+#navigation,
+#total,
+#Archives,
+#Categories,
+#archive-aside
+  border-color var(--theme-border-soft)
+
+.recent-post
+  background-color var(--theme-bg-trans1)
+
+// Give the aside its own pale panel (both mobile + desktop) so the
+// near-ink text we set via --theme-text-light stays legible. The original
+// arknights theme assumed near-white text on a dark body, but we inverted
+// the panel/text contrast for the reference palette.
+aside
+  background-color var(--theme-bg-trans1)
+  border 1px solid var(--theme-border-soft)
+  box-shadow 0 8px 22px rgba(0, 0, 0, .06)
+  padding 18px 20px
+  box-sizing border-box
+
+aside footer
+  color var(--theme-unimportant)
+
+#description p,
+#Dr a,
+.social
+  color var(--theme-text-light)
+
+#navigation,
+#total
+  background-color transparent
+
+#total-archives
+  border-left-color var(--theme-border-light)
+
+@media (max-width: 768px)
+  aside
+    margin-top 12px
+
+// ── Component refinements ───────────────────────────────────────────────────
+
+// Blockquote: sage left bar + faint sage tint instead of ink tint
+blockquote
+  border-left-color var(--theme-highlight)
+  border-left-width 4px
+  background-color rgba(93, 141, 121, .07)
+
+// Inline code: nudge contrast so it reads as a chip on the cream panel
+:not(pre) > code
+  background-color rgba(93, 141, 121, .14) !important
+  border 1px solid rgba(17, 24, 22, .08)
+  border-radius 2px
+  padding 0 4px !important
+
+// kbd: a quiet paper-key look (cream surface, ink border, soft drop)
+kbd
+  background-color #f5f4ee
+  color var(--theme-text-light)
+  border 1px solid var(--theme-border-soft)
+  border-radius 3px
+  box-shadow 0 1px 0 var(--theme-border-soft), inset 0 -1px 0 rgba(17, 24, 22, .06)
+  padding 0 6px
+
+// Table heading on the structural ink color so it reads as a hard panel header
+table th
+  background-color var(--theme-border)
+  color var(--theme-text-rev)
+
+#paginator a,
+#paginator span,
+.read-more,
+button,
+summary
+  border-radius 2px
+
+#post-title h1,
+.recent-post h1,
+#Dr a,
+h1, h2, h3, h4, h5, h6
+  letter-spacing .02em
+
+::selection
+  background-color var(--theme-highlight)
+  color #f6f8f6
+
+::-moz-selection
+  background-color var(--theme-highlight)
+  color #f6f8f6
+
+// ── Theme-toggle transitions ────────────────────────────────────────────────
+// Smooth cross-fade between dark/light modes for the surfaces and text that
+// actually swap. Keep duration short so navigation/hover stay snappy.
+
+html,
+body,
+aside,
+article,
+.recent-post,
+.recent-post .categories,
+.recent-post .tags,
+.recent-post time,
+.recent-post a,
+#post-bg,
+#post-content,
+#navigation,
+#total,
+#total-archives,
+#Archives,
+#Categories,
+#archive-aside,
+header,
+nav,
+.navItem,
+.navItemTitle,
+.navBlock,
+blockquote,
+table,
+table th,
+table td,
+:not(pre) > code,
+pre,
+kbd,
+.read-more,
+.post-sticky,
+.headerlink,
+button,
+summary,
+#paginator a,
+#paginator span,
+h1, h2, h3, h4, h5, h6
+  transition background-color .35s ease, color .35s ease, border-color .35s ease, box-shadow .35s ease

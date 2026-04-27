@@ -52,10 +52,10 @@ script.
   gtag('js', new Date());
   gtag('config', 'G-Z4EXFD5PT4');
 
-script(async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js")
-script(async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js")
-script(async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js")
-script(async src=url_for("/lib/encrypt/hbe.js"))
+script(defer src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js")
+script(defer src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js")
+script(defer src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js")
+script(defer src=url_for("/lib/encrypt/hbe.js"))
 include ./pjax.pug
 script.pjax-js reset= () => {
   if theme.valine && theme.valine.enable === true
@@ -154,7 +154,7 @@ script.pjax-js reset= () => {
     |MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
   | document.querySelector('.lg-container')?.remove()
   | const postBg = document.querySelector('#post-bg');
-  | if (postBg) lightGallery(postBg, {
+  | if (postBg && typeof lightGallery === 'function' && typeof lgZoom !== 'undefined' && typeof lgThumbnail !== 'undefined') lightGallery(postBg, {
   |   plugins: [lgZoom,lgThumbnail],
   |   selector: '.item-img'})}
 

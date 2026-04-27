@@ -336,7 +336,7 @@
                     <% if (page.archives && page.archives.length > 0) { %>
                         <% page.archives.forEach(function(archive) { %>
                         <li>
-                            <a href="<%= archive.path %>" class="flex items-center justify-between p-3 bg-slate-100 dark:bg-slate-800/50 hover:bg-rhine-accent hover:text-white rounded transition-all group">
+                            <a href="<%= url_for(archive.path) %>" class="flex items-center justify-between p-3 bg-slate-100 dark:bg-slate-800/50 hover:bg-rhine-accent hover:text-white rounded transition-all group">
                                 <span class="font-mono font-bold tracking-wider"><%= archive.date %></span>
                                 <i data-lucide="chevron-right" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"></i>
                             </a>
