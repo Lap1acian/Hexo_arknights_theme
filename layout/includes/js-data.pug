@@ -4,7 +4,7 @@ if searchConfig !== null
   script(defer src=url_for("js/search.js"))
 
 if theme.vercount && theme.vercount.enable === true
-  script(defer src="https://vercount.one/js")
+  script(defer src="https://events.vercount.one/js")
 
 if theme.valine && theme.valine.enable === true
   script(async src='//unpkg.com/valine/dist/Valine.min.js')
@@ -177,7 +177,7 @@ script window.addEventListener("load",() => {
     if theme.vercount.enable
       |document.addEventListener('pjax:success', _ => {
       |  const script = document.createElement('script');
-      |  script.src = 'https://vercount.one/js';
+      |  script.src = 'https://events.vercount.one/js';
       |  document.head.appendChild(script);
       |});
   | reset()})
