@@ -49,6 +49,7 @@
   --rl-overlay rgba(13, 19, 17, .72)
   --rl-key-bg #243430
   --rl-key-shadow rgba(0, 0, 0, .35)
+  --rl-glass-bg rgba(26, 36, 33, .45)
 
 :root[theme-mode=light]
   --theme-highlight #3a7560
@@ -93,6 +94,7 @@
   --rl-overlay rgba(234, 234, 227, .55)
   --rl-key-bg #f5f4ee
   --rl-key-shadow rgba(17, 24, 22, .12)
+  --rl-glass-bg rgba(248, 247, 240, .55)
 
 body
   color var(--theme-text)
@@ -106,13 +108,11 @@ article,
 #navigation,
 #total,
 #post-bg,
-.recent-post,
 #archive-aside,
 #Categories,
 #Archives
   box-shadow 0 8px 22px rgba(0, 0, 0, .06)
 
-.recent-post,
 #post-bg,
 #navigation,
 #total,
@@ -121,8 +121,23 @@ article,
 #archive-aside
   border-color var(--theme-border-soft)
 
-.recent-post
-  background-color var(--theme-bg-trans1)
+// Glassy post list (inspired by angine.tech): one blur layer on the
+// container, translucent stacked cards on top, no per-card dividers.
+// --rl-glass-bg is a more transparent companion to --theme-bg-trans1
+// so the body image shows through after blur.
+.posts
+  backdrop-filter blur(24px) saturate(140%)
+  -webkit-backdrop-filter blur(24px) saturate(140%)
+
+.posts .recent-post
+  background-color var(--rl-glass-bg)
+  border none
+  margin-bottom 0
+  box-shadow none
+
+@media (min-width: 769px)
+  .posts .recent-post:hover
+    background-color var(--theme-highlight)
 
 // Give the aside its own pale panel (both mobile + desktop) so the
 // near-ink text we set via --theme-text-light stays legible. The original
